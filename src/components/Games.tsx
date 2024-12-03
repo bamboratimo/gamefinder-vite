@@ -138,24 +138,20 @@ const Games: React.FC<Props> = ({
                             }}
                         >
                             {!gamesList.skeletons
-                                ? gamesList.games.map(
-                                      (game: Game, index: number) => {
-                                          return (
-                                              <Game
-                                                  key={game.id}
-                                                  onClick={() => {
-                                                      navigate(
-                                                          `/games/${game.id}`
-                                                      );
-                                                  }}
-                                                  game={game}
-                                              />
-                                          );
-                                      }
-                                  )
+                                ? gamesList.games.map((game: Game) => {
+                                      return (
+                                          <Game
+                                              key={game.id}
+                                              onClick={() => {
+                                                  navigate(`/games/${game.id}`);
+                                              }}
+                                              game={game}
+                                          />
+                                      );
+                                  })
                                 : Array(20)
                                       .fill("")
-                                      .map((skeleton: any, index: number) => {
+                                      .map((_, index: number) => {
                                           return (
                                               <Skeleton
                                                   key={index}
