@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
+const moi: number = 1;
+
 import Games from "./components/Games";
 import Favorites from "./components/Favorites";
 import Menu from "./components/Menu";
