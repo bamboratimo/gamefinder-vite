@@ -3,7 +3,6 @@ import {
     Container,
     Typography,
     SelectChangeEvent,
-    Skeleton,
     MenuItem,
 } from "@mui/material";
 import React, { CSSProperties } from "react";
@@ -137,34 +136,17 @@ const Games: React.FC<Props> = ({
                                 marginBottom: "20px",
                             }}
                         >
-                            {!gamesList.skeletons
-                                ? gamesList.games.map((game: Game) => {
-                                      return (
-                                          <Game
-                                              key={game.id}
-                                              onClick={() => {
-                                                  navigate(`/games/${game.id}`);
-                                              }}
-                                              game={game}
-                                          />
-                                      );
-                                  })
-                                : Array(20)
-                                      .fill("")
-                                      .map((skeleton: any, index: number) => {
-                                          return (
-                                              <Skeleton
-                                                  key={index}
-                                                  sx={{
-                                                      bgcolor: "grey.900",
-                                                      borderRadius: "20px",
-                                                  }}
-                                                  variant="rectangular"
-                                                  width={300}
-                                                  height={300}
-                                              />
-                                          );
-                                      })}
+                            {gamesList.games.map((game: Game) => {
+                                return (
+                                    <Game
+                                        key={game.id}
+                                        onClick={() => {
+                                            navigate(`/games/${game.id}`);
+                                        }}
+                                        game={game}
+                                    />
+                                );
+                            })}
                         </Box>
                     </InfiniteScroll>
                 </Box>
