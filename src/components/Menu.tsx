@@ -1,15 +1,9 @@
-import {
-    Badge,
-    Box,
-    Button,
-    IconButton,
-    TextField,
-    Typography,
-} from "@mui/material";
+import { Badge, Box, Button, IconButton, Typography } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useRef } from "react";
+import SearchBar from "./SearchBar";
 
 interface Props {
     favorites: Favorite[];
@@ -76,29 +70,13 @@ const Menu: React.FC<Props> = ({
                     alignItems: "center",
                 }}
             >
-                <TextField
-                    inputRef={textRef}
-                    variant="outlined"
-                    size="small"
-                    onChange={inputHandler}
-                    onKeyDown={(e: React.KeyboardEvent) => {
-                        if (e.key === "Enter") {
-                            if (searchWord === textRef.current) {
-                                return;
-                            }
-                            search();
-                            navigate("/");
-                            textRef.current = searchWord;
-                        }
+                <SearchBar
+                    searchWord={searchWord}
+                    search={search}
+                    onChange={(e) => {
+                        inputHandler(e);
                     }}
-                    autoComplete="off"
-                    sx={{
-                        borderRadius: "10px",
-                        backgroundColor: "ghostwhite",
-                        width: "500px",
-                        maxWidth: "500px",
-                        marginRight: "10px",
-                    }}
+                    textRef={textRef}
                 />
                 <Button
                     variant="contained"
@@ -117,7 +95,6 @@ const Menu: React.FC<Props> = ({
                     Etsi
                 </Button>
             </Box>
-            <Outlet />
         </Box>
     );
 };

@@ -13,14 +13,12 @@ interface Props {
 
 const heartStyle = {
     "&:hover": {
-        fontSize: "1.6rem",
         color: "#D2122E",
     },
-    position: "absolute",
-    top: 5,
-    left: 5,
     color: "red",
     fontSize: "1.2rem",
+    alignSelf: "start",
+    margin: "5px",
 };
 
 const Game: React.FC<Props> = ({ onClick, game }): React.ReactElement => {
@@ -60,12 +58,9 @@ const Game: React.FC<Props> = ({ onClick, game }): React.ReactElement => {
                 textTransform: "none",
                 backgroundColor: "#202020",
                 width: "300px",
-                minHeight: "300px",
                 color: "#fff",
                 display: "flex",
                 flexDirection: "column",
-                justifyContent: "space-between",
-                alignItems: "center",
                 borderRadius: "20px",
                 "&:hover": {
                     transform: "scale(1.02)",
@@ -74,44 +69,54 @@ const Game: React.FC<Props> = ({ onClick, game }): React.ReactElement => {
                 position: "relative",
             }}
         >
-            <Typography
-                variant="h6"
+            <Box
                 sx={{
-                    textAlign: "center",
-                    marginTop: "auto",
-                    marginBottom: "auto",
-                    padding: "10px",
-                    fontFamily: "Poppins",
-                    fontWeight: "700",
-                    fontSize: "24px",
+                    display: "flex",
+                    flexDirection: "column",
+                    width: "100%",
+                    justifyContent: "end",
+                    height: "100%",
                 }}
             >
-                {game.name}
-            </Typography>
-            {checkIfFavorite ? (
-                <FavoriteIcon
-                    onClick={(e) => {
-                        deleteGame();
-                        e.stopPropagation();
-                    }}
-                    sx={heartStyle}
-                />
-            ) : (
-                <FavoriteBorderIcon
-                    onClick={(e) => {
-                        const newGame = {
-                            game: game,
-                            images: game.images,
-                            defaultId: defaultId,
-                        };
-                        setFavorites([...favorites, newGame]);
-                        setDefaultId(defaultId + 1);
+                {checkIfFavorite ? (
+                    <FavoriteIcon
+                        onClick={(e) => {
+                            deleteGame();
+                            e.stopPropagation();
+                        }}
+                        sx={heartStyle}
+                    />
+                ) : (
+                    <FavoriteBorderIcon
+                        onClick={(e) => {
+                            const newGame = {
+                                game: game,
+                                images: game.images,
+                                defaultId: defaultId,
+                            };
+                            setFavorites([...favorites, newGame]);
+                            setDefaultId(defaultId + 1);
 
-                        e.stopPropagation();
+                            e.stopPropagation();
+                        }}
+                        sx={heartStyle}
+                    />
+                )}
+                <Typography
+                    variant="h6"
+                    sx={{
+                        textAlign: "center",
+                        marginTop: "auto",
+                        marginBottom: "auto",
+                        padding: "0 0 10px 0",
+                        fontFamily: "Poppins",
+                        fontWeight: "700",
+                        fontSize: "24px",
                     }}
-                    sx={heartStyle}
-                />
-            )}
+                >
+                    {game.name}
+                </Typography>
+            </Box>
 
             {game.background_image ? (
                 <img

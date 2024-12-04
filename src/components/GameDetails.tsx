@@ -20,8 +20,6 @@ const GameDetails: React.FC = (): React.ReactElement => {
         images: [],
     });
 
-    console.log(gameDetails.images);
-
     const [loaded, setLoaded] = useState<boolean>(false);
 
     const alreadyFavorite: Favorite | undefined = favorites.find(
@@ -34,10 +32,10 @@ const GameDetails: React.FC = (): React.ReactElement => {
         setLoaded(true);
     };
 
-    const cropImage = (word: string): string => {
-        const newString = `${word.slice(0, 27)}/crop/600/400${word.slice(27)}`;
-        return newString;
-    };
+    // const cropImage = (word: string): string => {
+    //     const newString = `${word.slice(0, 27)}/crop/600/400${word.slice(27)}`;
+    //     return newString;
+    // };
 
     const getData = async () => {
         try {
@@ -150,12 +148,14 @@ const GameDetails: React.FC = (): React.ReactElement => {
                             <img
                                 style={{
                                     marginBottom: "10px",
-                                    maxWidth: "100%",
+                                    width: "100%",
+                                    maxWidth: "800px",
                                     height: loaded ? "auto" : "40vh",
                                 }}
-                                src={cropImage(
-                                    gameDetails.game.background_image
-                                )}
+                                // src={cropImage(
+                                //     gameDetails.game.background_image
+                                // )}
+                                src={gameDetails.game.background_image}
                                 alt="kuva pelistä"
                                 onLoad={onLoad}
                             />
