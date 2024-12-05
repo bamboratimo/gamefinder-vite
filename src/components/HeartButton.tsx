@@ -23,9 +23,9 @@ const HeartButton: React.FC<Props> = ({
     } = useContext(GameContext);
     const [text, setText] = useState<string>("");
 
-    const addFavorite = (): void => {
+    const addFavorite = (game: Gamedetails): void => {
         const newGame = {
-            game: gameDetails.game,
+            game,
             images: gameDetails.images,
             defaultId: defaultId,
         };
@@ -55,7 +55,7 @@ const HeartButton: React.FC<Props> = ({
             {!alreadyFavorite ? (
                 <IconButton
                     onClick={() => {
-                        addFavorite();
+                        addFavorite(gameDetails.game);
                         setText("Lisätty");
                     }}
                 >

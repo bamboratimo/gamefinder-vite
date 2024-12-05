@@ -5,6 +5,10 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 import React, { useContext } from "react";
 import GameContext from "../GameContext";
+import exceptional from "../assets/exceptional.png";
+import recommended from "../assets/recommended.png";
+import meh from "../assets/meh.png";
+import skip from "../assets/skip.png";
 
 interface Props {
     onClick: () => void;
@@ -30,6 +34,16 @@ const Game: React.FC<Props> = ({ onClick, game }): React.ReactElement => {
         defaultId,
         setDefaultId,
     } = useContext(GameContext);
+    const icon: any =
+        game.rating_top === 5
+            ? exceptional
+            : game.rating_top === 4
+            ? recommended
+            : game.rating_top === 3
+            ? meh
+            : game.rating_top === 1
+            ? skip
+            : null;
 
     const cropImage = (word: string) => {
         const newString = `${word.slice(0, 27)}/crop/600/400${word.slice(27)}`;
@@ -58,6 +72,7 @@ const Game: React.FC<Props> = ({ onClick, game }): React.ReactElement => {
                 textTransform: "none",
                 backgroundColor: "#202020",
                 width: "300px",
+                height: "auto",
                 color: "#fff",
                 display: "flex",
                 flexDirection: "column",
@@ -74,7 +89,7 @@ const Game: React.FC<Props> = ({ onClick, game }): React.ReactElement => {
                     display: "flex",
                     flexDirection: "column",
                     width: "100%",
-                    justifyContent: "end",
+                    justifyContent: "center",
                     height: "100%",
                 }}
             >
@@ -102,20 +117,39 @@ const Game: React.FC<Props> = ({ onClick, game }): React.ReactElement => {
                         sx={heartStyle}
                     />
                 )}
-                <Typography
-                    variant="h6"
+                <Box
                     sx={{
-                        textAlign: "center",
-                        marginTop: "auto",
-                        marginBottom: "auto",
-                        padding: "0 0 10px 0",
-                        fontFamily: "Poppins",
-                        fontWeight: "700",
-                        fontSize: "24px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        width: "100%",
+                        height: "100%",
+                        flexDirection: "column",
                     }}
                 >
-                    {game.name}
-                </Typography>
+                    <Typography
+                        variant="h6"
+                        sx={{
+                            textAlign: "center",
+                            marginTop: "auto",
+                            marginBottom: "auto",
+                            fontFamily: "Poppins",
+                            fontWeight: "700",
+                            fontSize: "24px",
+                        }}
+                    >
+                        {game.name}
+                    </Typography>
+                    <img
+                        src={icon}
+                        style={{
+                            width: icon === exceptional ? "35px" : "25px",
+                            height: icon === exceptional ? "35px" : "25px",
+                            alignSelf: "start",
+                            marginBottom: "5px",
+                        }}
+                    />
+                </Box>
             </Box>
 
             {game.background_image ? (
