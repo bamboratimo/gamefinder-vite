@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import Games from "./components/Games";
@@ -18,6 +18,7 @@ const App: React.FC = (): React.ReactElement => {
         error: false,
         skeletons: false,
     });
+
     const [defaultId, setDefaultId] = useState<number>(0);
     const [favorites, setFavorites] = useState<Favorite[]>([]);
     const [filtered, setFiltered] = useState<Favorite[]>([...favorites]);
@@ -111,6 +112,8 @@ const App: React.FC = (): React.ReactElement => {
     useEffect(() => {
         search();
     }, [searchSort]);
+
+    console.log(gamesList);
 
     return (
         <GameContext.Provider value={sharedValue}>

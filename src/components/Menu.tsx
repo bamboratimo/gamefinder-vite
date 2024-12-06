@@ -2,8 +2,9 @@ import { Badge, Box, Button, IconButton, Typography } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
 import { Link, useNavigate } from "react-router-dom";
-import React, { useRef } from "react";
+
 import SearchBar from "./SearchBar";
+import { useRef } from "react";
 
 interface Props {
     favorites: Favorite[];
@@ -22,7 +23,7 @@ const Menu: React.FC<Props> = ({
 }): React.ReactElement => {
     const navigate = useNavigate();
 
-    const textRef = useRef("");
+    const textRef = useRef<string>("");
 
     const inputHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setSearchWord(e.target.value);

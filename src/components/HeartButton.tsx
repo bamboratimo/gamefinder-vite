@@ -26,7 +26,7 @@ const HeartButton: React.FC<Props> = ({
     const addFavorite = (game: Gamedetails): void => {
         const newGame = {
             game,
-            images: gameDetails.images,
+            images: game.images,
             defaultId: defaultId,
         };
         setDefaultId(defaultId + 1);

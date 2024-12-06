@@ -6,7 +6,7 @@ import {
     Skeleton,
     MenuItem,
 } from "@mui/material";
-import React, { CSSProperties } from "react";
+import { CSSProperties } from "react";
 import Game from "./Game";
 import { useNavigate } from "react-router-dom";
 import SelectElement from "./SelectElement";
@@ -53,6 +53,7 @@ const Games: React.FC<Props> = ({
             setGamesList({ ...gamesList, error: true });
         }
     };
+    console.log(gamesList.games);
 
     return (
         <Container

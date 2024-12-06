@@ -3,12 +3,10 @@ import ImageIcon from "@mui/icons-material/Image";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
-import React, { useContext } from "react";
+import { useContext } from "react";
 import GameContext from "../GameContext";
-import exceptional from "../assets/exceptional.png";
-import recommended from "../assets/recommended.png";
-import meh from "../assets/meh.png";
-import skip from "../assets/skip.png";
+import RatingIcon from "./RatingIcon";
+import PlatformIcons from "./PlatformIcons";
 
 interface Props {
     onClick: () => void;
@@ -34,25 +32,27 @@ const Game: React.FC<Props> = ({ onClick, game }): React.ReactElement => {
         defaultId,
         setDefaultId,
     } = useContext(GameContext);
-    const icon: any =
-        game.rating_top === 5
-            ? exceptional
-            : game.rating_top === 4
-            ? recommended
-            : game.rating_top === 3
-            ? meh
-            : game.rating_top === 1
-            ? skip
-            : null;
 
     const cropImage = (word: string) => {
         const newString = `${word.slice(0, 27)}/crop/600/400${word.slice(27)}`;
         return newString;
     };
 
-    const checkIfFavorite: Favorite | undefined = favorites.find(
+    const isFavorite: Favorite | undefined = favorites.find(
         (favorite: Favorite) => favorite.game.id === game.id
     );
+
+    const addGame = (e: any): void => {
+        const newGame = {
+            game: game,
+            images: game.images,
+            defaultId: defaultId,
+        };
+        setFavorites([...favorites, newGame]);
+        setDefaultId(defaultId + 1);
+
+        e.stopPropagation();
+    };
 
     const deleteGame = (): void => {
         const deletedFavorite: Favorite[] = [...favorites].filter(
@@ -93,7 +93,7 @@ const Game: React.FC<Props> = ({ onClick, game }): React.ReactElement => {
                     height: "100%",
                 }}
             >
-                {checkIfFavorite ? (
+                {isFavorite ? (
                     <FavoriteIcon
                         onClick={(e) => {
                             deleteGame();
@@ -104,15 +104,7 @@ const Game: React.FC<Props> = ({ onClick, game }): React.ReactElement => {
                 ) : (
                     <FavoriteBorderIcon
                         onClick={(e) => {
-                            const newGame = {
-                                game: game,
-                                images: game.images,
-                                defaultId: defaultId,
-                            };
-                            setFavorites([...favorites, newGame]);
-                            setDefaultId(defaultId + 1);
-
-                            e.stopPropagation();
+                            addGame(e);
                         }}
                         sx={heartStyle}
                     />
@@ -140,15 +132,17 @@ const Game: React.FC<Props> = ({ onClick, game }): React.ReactElement => {
                     >
                         {game.name}
                     </Typography>
-                    <img
-                        src={icon}
-                        style={{
-                            width: icon === exceptional ? "35px" : "25px",
-                            height: icon === exceptional ? "35px" : "25px",
+                    <Box
+                        sx={{
+                            display: "flex",
                             alignSelf: "start",
-                            marginBottom: "5px",
+                            alignItems: "center",
+                            gap: "20px",
                         }}
-                    />
+                    >
+                        <RatingIcon rating={game.rating_top} />
+                        <PlatformIcons platforms={game.parent_platforms} />
+                    </Box>
                 </Box>
             </Box>
 

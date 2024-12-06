@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Box, Skeleton, Container, Typography } from "@mui/material";
 
 import ImageIcon from "@mui/icons-material/Image";
