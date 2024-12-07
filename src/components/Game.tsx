@@ -70,12 +70,13 @@ const Game: React.FC<Props> = ({ onClick, game }): React.ReactElement => {
             onClick={onClick}
             sx={{
                 textTransform: "none",
-                backgroundColor: "#202020",
+                backgroundColor: "#2d2d2d",
                 width: "300px",
                 height: "auto",
                 color: "#fff",
                 display: "flex",
                 flexDirection: "column",
+                alignItems: "center",
                 borderRadius: "20px",
                 "&:hover": {
                     transform: "scale(1.02)",

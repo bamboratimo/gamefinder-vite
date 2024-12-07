@@ -5,6 +5,7 @@ import {
     SelectChangeEvent,
     Skeleton,
     MenuItem,
+    useMediaQuery,
 } from "@mui/material";
 import { CSSProperties } from "react";
 import Game from "./Game";
@@ -30,6 +31,7 @@ const Games: React.FC<Props> = ({
     searchSort,
     setSearchSort,
 }): React.ReactElement => {
+    const Mobile = useMediaQuery("(max-width: 950px)");
     const navigate = useNavigate();
 
     const sort = (e: SelectChangeEvent): void => {
@@ -53,11 +55,9 @@ const Games: React.FC<Props> = ({
             setGamesList({ ...gamesList, error: true });
         }
     };
-    console.log(gamesList.games);
 
     return (
         <Container
-            className="games"
             maxWidth={false}
             sx={{
                 display: "flex",
@@ -65,7 +65,7 @@ const Games: React.FC<Props> = ({
                 alignItems: "center",
                 justifyContent: "center",
                 gap: "20px",
-                paddingTop: "80px",
+                paddingTop: Mobile ? "125px" : "80px",
             }}
         >
             <Box

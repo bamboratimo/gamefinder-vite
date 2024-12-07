@@ -1,5 +1,11 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { Box, Skeleton, Container, Typography } from "@mui/material";
+import {
+    Box,
+    Skeleton,
+    Container,
+    Typography,
+    useMediaQuery,
+} from "@mui/material";
 
 import ImageIcon from "@mui/icons-material/Image";
 
@@ -10,6 +16,8 @@ import GameContext from "../GameContext";
 import AccordionElement from "./AccordionElement";
 
 const GameDetails: React.FC = (): React.ReactElement => {
+    const Mobile = useMediaQuery("(max-width: 950px)");
+
     const { apikey, favorites } = useContext(GameContext);
     const { id } = useParams();
     const navigate = useNavigate();
@@ -73,12 +81,11 @@ const GameDetails: React.FC = (): React.ReactElement => {
 
     return (
         <Container
-            className="games"
             disableGutters
             maxWidth={false}
             sx={{
                 backgroundColor: "black",
-                paddingTop: "80px",
+                paddingTop: Mobile ? "125px" : "80px",
             }}
         >
             {gameDetails.ready ? (
@@ -106,10 +113,11 @@ const GameDetails: React.FC = (): React.ReactElement => {
                 maxWidth={false}
                 sx={{
                     display: "grid",
-                    gridTemplateColumns: "1fr 1fr",
+                    gridTemplateColumns: Mobile ? "1fr" : "1fr 1fr",
                     padding: "0 10px",
                     alignItems: "start",
                     gap: "20px",
+                    height: Mobile ? "90vh" : "initial",
                 }}
             >
                 <Box
@@ -299,10 +307,9 @@ const GameDetails: React.FC = (): React.ReactElement => {
                     </Box>
                 ) : (
                     <Box
-                        className="heo"
                         sx={{
                             display: "grid",
-                            gridTemplateColumns: "1fr 1fr",
+                            gridTemplateColumns: Mobile ? "1fr" : "1fr 1fr",
                             gridAutoRows: "min-content",
                             gap: "10px",
                             background: "black",

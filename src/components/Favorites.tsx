@@ -1,4 +1,11 @@
-import { Box, Button, Container, MenuItem, Typography } from "@mui/material";
+import {
+    Box,
+    Button,
+    Container,
+    MenuItem,
+    Typography,
+    useMediaQuery,
+} from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 
 import Game from "./Game";
@@ -21,6 +28,8 @@ const Favorites: React.FC<Props> = ({ loading }): React.ReactElement => {
         filterString,
         setFilterString,
     } = useContext(GameContext);
+
+    const Mobile = useMediaQuery("(max-width: 950px)");
 
     const navigate = useNavigate();
 
@@ -132,6 +141,7 @@ const Favorites: React.FC<Props> = ({ loading }): React.ReactElement => {
                 justifyContent: "center",
                 gap: "20px",
                 marginBottom: "20px",
+                paddingTop: Mobile ? "125px" : "80px",
             }}
         >
             <Box
