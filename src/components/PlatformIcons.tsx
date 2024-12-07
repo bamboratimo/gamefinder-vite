@@ -63,7 +63,7 @@ const PlatformIcons: React.FC<Props> = ({ platforms }): React.ReactElement => {
     };
     return (
         <Box sx={{ display: "flex", alignItems: "end", gap: "8px" }}>
-            {platforms.map((platform: any) => {
+            {platforms?.map((platform: any) => {
                 return (
                     <img
                         key={platform.platform.id}

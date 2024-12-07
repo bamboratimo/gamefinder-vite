@@ -26,6 +26,7 @@ const RatingIcon: React.FC<Props> = ({ rating }): React.ReactElement => {
                 height: icon === exceptional ? "35px" : "25px",
                 alignSelf: "start",
                 marginBottom: "5px",
+                visibility: rating ? "initial" : "hidden",
             }}
         />
     );

@@ -37,10 +37,11 @@ const Menu: React.FC<Props> = ({
                 justifyContent: "center",
                 flexWrap: "wrap",
                 alignItems: "center",
-                position: "sticky",
+                position: "fixed", //
                 backgroundColor: "rgba(21,21,21,0.8)",
                 top: 0,
                 zIndex: 1,
+                width: "100%",
             }}
         >
             <Button component={Link} to="/">

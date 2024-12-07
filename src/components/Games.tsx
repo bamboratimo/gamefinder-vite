@@ -57,6 +57,7 @@ const Games: React.FC<Props> = ({
 
     return (
         <Container
+            className="games"
             maxWidth={false}
             sx={{
                 display: "flex",
@@ -64,6 +65,7 @@ const Games: React.FC<Props> = ({
                 alignItems: "center",
                 justifyContent: "center",
                 gap: "20px",
+                paddingTop: "80px",
             }}
         >
             <Box

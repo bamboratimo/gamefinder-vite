@@ -73,10 +73,12 @@ const GameDetails: React.FC = (): React.ReactElement => {
 
     return (
         <Container
+            className="games"
             disableGutters
             maxWidth={false}
             sx={{
                 backgroundColor: "black",
+                paddingTop: "80px",
             }}
         >
             {gameDetails.ready ? (
