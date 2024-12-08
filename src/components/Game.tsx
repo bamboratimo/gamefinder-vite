@@ -82,7 +82,6 @@ const Game: React.FC<Props> = ({ onClick, game }): React.ReactElement => {
                     transform: "scale(1.02)",
                 },
                 cursor: "pointer",
-                position: "relative",
             }}
         >
             <Box
@@ -150,7 +149,7 @@ const Game: React.FC<Props> = ({ onClick, game }): React.ReactElement => {
             {game.background_image ? (
                 <img
                     style={{
-                        maxWidth: "300px",
+                        height: "200px",
                     }}
                     src={cropImage(game.background_image)}
                     alt="kuva pelistä"
