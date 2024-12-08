@@ -72,7 +72,7 @@ const Game: React.FC<Props> = ({ onClick, game }): React.ReactElement => {
                 textTransform: "none",
                 backgroundColor: "#2d2d2d",
                 width: "300px",
-                height: "auto",
+                minHeight: "300px",
                 color: "#fff",
                 display: "flex",
                 flexDirection: "column",
