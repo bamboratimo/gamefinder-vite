@@ -1,11 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import {
-    Box,
-    Skeleton,
-    Container,
-    Typography,
-    useMediaQuery,
-} from "@mui/material";
+import { Box, Skeleton, Container, useMediaQuery } from "@mui/material";
 
 import ImageIcon from "@mui/icons-material/Image";
 
@@ -14,6 +8,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import GameHeader from "./GameHeader";
 import GameContext from "../GameContext";
 import AccordionElement from "./AccordionElement";
+import GameInfo from "./GameInfo";
+import GameImages from "./GameImages";
 
 const GameDetails: React.FC = (): React.ReactElement => {
     const Mobile = useMediaQuery("(max-width: 950px)");
@@ -185,68 +181,7 @@ const GameDetails: React.FC = (): React.ReactElement => {
                             }}
                         >
                             <AccordionElement gameDetails={gameDetails} />
-                            <Box
-                                sx={{
-                                    display: "flex",
-                                    flexWrap: "wrap",
-                                    color: "white",
-                                    width: "100%",
-                                    gap: "20px",
-                                    justifyContent: "center",
-                                }}
-                            >
-                                <Box
-                                    sx={{
-                                        flexBasis: "40%",
-                                    }}
-                                >
-                                    <Typography variant="h5" color="gray">
-                                        Alustat
-                                    </Typography>
-
-                                    {gameDetails.game.platforms.map(
-                                        (item: Favorite, index: number) => {
-                                            return (
-                                                <Typography key={index}>
-                                                    {item.platform.name}
-                                                </Typography>
-                                            );
-                                        }
-                                    )}
-                                </Box>
-                                <Box sx={{ flexBasis: "40%" }}>
-                                    <Typography variant="h5" color="gray">
-                                        Julkaistu
-                                    </Typography>
-                                    <Typography>
-                                        {gameDetails.game.released
-                                            ? new Date(
-                                                  gameDetails.game.released
-                                              ).toLocaleDateString()
-                                            : `Julkaisutietoa ei saatavilla`}
-                                    </Typography>
-                                </Box>
-                                <Box sx={{ flexBasis: "40%" }}>
-                                    <Typography variant="h5" color="gray">
-                                        Kehittäjä
-                                    </Typography>
-                                    <Typography>
-                                        {gameDetails.game.developers.length > 0
-                                            ? `${gameDetails.game.developers[0].name}`
-                                            : `Pelin kehittäjä ei tiedossa`}
-                                    </Typography>
-                                </Box>
-                                <Box sx={{ flexBasis: "40%" }}>
-                                    <Typography variant="h5" color="gray">
-                                        Metacritic
-                                    </Typography>
-                                    <Typography>
-                                        {gameDetails.game.metacritic
-                                            ? `${gameDetails.game.metacritic}`
-                                            : `Ei saatavilla`}
-                                    </Typography>
-                                </Box>
-                            </Box>
+                            <GameInfo gameDetails={gameDetails} />
                         </Box>
                     ) : (
                         <>
@@ -283,73 +218,24 @@ const GameDetails: React.FC = (): React.ReactElement => {
                             justifySelf: "center",
                         }}
                     >
-                        <Skeleton
-                            sx={{
-                                width: "25vw",
-                                height: "220px",
-                                bgcolor: "grey.900",
-                            }}
-                            variant="rectangular"
-                        />
-                        <Skeleton
-                            sx={{
-                                width: "25vw",
-                                height: "220px",
-                                bgcolor: "grey.900",
-                            }}
-                            variant="rectangular"
-                        />
-                        <Skeleton
-                            sx={{
-                                width: "25vw",
-                                height: "220px",
-                                bgcolor: "grey.900",
-                            }}
-                            variant="rectangular"
-                        />
-                        <Skeleton
-                            sx={{
-                                width: "25vw",
-                                height: "220px",
-                                bgcolor: "grey.900",
-                            }}
-                            variant="rectangular"
-                        />
-                    </Box>
-                ) : (
-                    <Box
-                        sx={{
-                            display: "grid",
-                            gridTemplateColumns: Mobile ? "1fr" : "1fr 1fr",
-                            gridAutoRows: "min-content",
-                            gap: "10px",
-                            background: "black",
-                            justifySelf: "center",
-                        }}
-                    >
-                        {gameDetails.images.map(
-                            (kuva: Image, index: number) => {
+                        {Array(4)
+                            .fill("")
+                            .map((_, index: number) => {
                                 return (
-                                    <Box
+                                    <Skeleton
                                         key={index}
                                         sx={{
-                                            maxWidth: "500px",
-                                            height: "100%",
+                                            bgcolor: "grey.900",
                                         }}
-                                    >
-                                        <img
-                                            style={{
-                                                width: "100%",
-                                                height: "auto",
-                                            }}
-                                            src={kuva.image}
-                                            alt="kuva pelistä"
-                                        />
-                                    </Box>
+                                        variant="rectangular"
+                                        width="25vw"
+                                        height={220}
+                                    />
                                 );
-                            }
-                        )}
+                            })}
                     </Box>
+                ) : (
+                    <GameImages gameDetails={gameDetails} />
                 )}
             </Container>
         </Container>

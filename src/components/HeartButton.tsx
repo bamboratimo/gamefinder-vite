@@ -9,6 +9,12 @@ interface Props {
     gameDetails: any;
 }
 
+const favoriteIconStyle = {
+    color: "red",
+    width: "28px",
+    height: "28px",
+};
+
 const HeartButton: React.FC<Props> = ({
     alreadyFavorite,
     gameDetails,
@@ -59,13 +65,7 @@ const HeartButton: React.FC<Props> = ({
                         setText("Lisätty");
                     }}
                 >
-                    <FavoriteBorderIcon
-                        sx={{
-                            color: "red",
-                            width: "28px",
-                            height: "28px",
-                        }}
-                    />
+                    <FavoriteBorderIcon sx={favoriteIconStyle} />
                 </IconButton>
             ) : (
                 <IconButton
@@ -74,13 +74,7 @@ const HeartButton: React.FC<Props> = ({
                         setText("Poistettu");
                     }}
                 >
-                    <FavoriteIcon
-                        sx={{
-                            color: "red",
-                            width: "28px",
-                            height: "28px",
-                        }}
-                    />
+                    <FavoriteIcon sx={favoriteIconStyle} />
                 </IconButton>
             )}
 

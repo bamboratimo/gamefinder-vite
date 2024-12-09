@@ -7,13 +7,11 @@ import {
     MenuItem,
     useMediaQuery,
 } from "@mui/material";
-import { CSSProperties } from "react";
 import Game from "./Game";
 import { useNavigate } from "react-router-dom";
 import SelectElement from "./SelectElement";
 
-import InfiniteScroll from "react-infinite-scroll-component";
-import { ClipLoader } from "react-spinners";
+import InfiniteScrollComp from "./InfiniteScrollComp";
 
 interface Props {
     gamesList: Game;
@@ -21,9 +19,6 @@ interface Props {
     searchSort: string;
     setSearchSort: (arg0: string) => void;
 }
-const override: CSSProperties = {
-    margin: "0 auto",
-};
 
 const Games: React.FC<Props> = ({
     gamesList,
@@ -31,7 +26,7 @@ const Games: React.FC<Props> = ({
     searchSort,
     setSearchSort,
 }): React.ReactElement => {
-    const Mobile = useMediaQuery("(max-width: 950px)");
+    const Mobile = useMediaQuery("(max-width: 974px)");
     const navigate = useNavigate();
 
     const sort = (e: SelectChangeEvent): void => {
@@ -113,23 +108,9 @@ const Games: React.FC<Props> = ({
                         justifyContent: "center",
                     }}
                 >
-                    <InfiniteScroll
-                        dataLength={gamesList.games.length}
-                        next={nextPage}
-                        hasMore={Boolean(gamesList.pages.next)}
-                        // loader={
-                        //     <h3 style={{ color: "white", textAlign: "center" }}>
-                        //         Loading...
-                        //     </h3>
-                        // }
-                        loader={
-                            <ClipLoader color="white" cssOverride={override} />
-                        }
-                        style={{
-                            overflow: "hidden",
-                            display: "flex",
-                            flexDirection: "column",
-                        }}
+                    <InfiniteScrollComp
+                        gamesList={gamesList}
+                        nextPage={nextPage}
                     >
                         <Box
                             sx={{
@@ -166,11 +147,11 @@ const Games: React.FC<Props> = ({
                                                   variant="rectangular"
                                                   width={300}
                                                   height={300}
-                                              ></Skeleton>
+                                              />
                                           );
                                       })}
                         </Box>
-                    </InfiniteScroll>
+                    </InfiniteScrollComp>
                 </Box>
             )}
         </Container>

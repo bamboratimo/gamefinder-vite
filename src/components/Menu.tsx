@@ -92,6 +92,7 @@ const Menu: React.FC<Props> = ({
                     }}
                     sx={{
                         height: "2.5rem",
+                        marginLeft: "-20px",
                     }}
                 >
                     Etsi
