@@ -64,7 +64,7 @@ const Games: React.FC<Props> = ({
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                gap: "20px",
+                gap: "10px",
                 paddingTop: Mobile ? "125px" : "80px",
             }}
         >
@@ -138,6 +138,7 @@ const Games: React.FC<Props> = ({
                                 gap: "20px",
                                 justifyContent: "center",
                                 marginBottom: "20px",
+                                paddingTop: "10px",
                             }}
                         >
                             {!gamesList.skeletons

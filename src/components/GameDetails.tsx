@@ -249,15 +249,26 @@ const GameDetails: React.FC = (): React.ReactElement => {
                             </Box>
                         </Box>
                     ) : (
-                        <Skeleton
-                            sx={{
-                                marginTop: "20px",
-                                width: "50vw",
-                                height: "35vh",
-                                bgcolor: "grey.900",
-                            }}
-                            variant="rectangular"
-                        />
+                        <>
+                            <Skeleton
+                                sx={{
+                                    marginTop: "20px",
+                                    width: "100%",
+                                    height: "5vh",
+                                    bgcolor: "grey.900",
+                                }}
+                                variant="rectangular"
+                            />
+                            <Skeleton
+                                sx={{
+                                    marginTop: "20px",
+                                    width: "100%",
+                                    height: "35vh",
+                                    bgcolor: "grey.900",
+                                }}
+                                variant="rectangular"
+                            />
+                        </>
                     )}
                 </Box>
 

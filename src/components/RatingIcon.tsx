@@ -22,8 +22,8 @@ const RatingIcon: React.FC<Props> = ({ rating }): React.ReactElement => {
         <img
             src={icon}
             style={{
-                width: icon === exceptional ? "35px" : "25px",
-                height: icon === exceptional ? "35px" : "25px",
+                width: "25px",
+                height: "25px",
                 alignSelf: "start",
                 marginBottom: "5px",
                 visibility: rating ? "initial" : "hidden",

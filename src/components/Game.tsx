@@ -66,59 +66,53 @@ const Game: React.FC<Props> = ({ onClick, game }): React.ReactElement => {
     };
 
     return (
-        <Box
-            onClick={onClick}
-            sx={{
-                textTransform: "none",
-                backgroundColor: "#2d2d2d",
-                width: "300px",
-                minHeight: "300px",
-                color: "#fff",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                borderRadius: "20px",
-                "&:hover": {
-                    transform: "scale(1.02)",
-                },
-                cursor: "pointer",
-            }}
-        >
+        <Box onClick={onClick} sx={{ height: "fit-content" }}>
             <Box
                 sx={{
+                    textTransform: "none",
+                    width: "300px",
+                    color: "#fff",
                     display: "flex",
                     flexDirection: "column",
-                    width: "100%",
-                    justifyContent: "center",
-                    height: "100%",
+                    alignItems: "center",
+                    borderRadius: "20px",
+                    "&:hover": {
+                        transform: "scale(1.05)",
+                    },
+                    cursor: "pointer",
+                    height: "fit-content",
+                    overflow: "hidden",
+                    transition: "transform .25s",
                 }}
             >
-                {isFavorite ? (
-                    <FavoriteIcon
-                        onClick={(e) => {
-                            deleteGame();
-                            e.stopPropagation();
-                        }}
-                        sx={heartStyle}
-                    />
-                ) : (
-                    <FavoriteBorderIcon
-                        onClick={(e) => {
-                            addGame(e);
-                        }}
-                        sx={heartStyle}
-                    />
-                )}
                 <Box
                     sx={{
+                        backgroundColor: "#2d2d2d",
                         display: "flex",
-                        alignItems: "center",
+                        flexDirection: "column",
                         justifyContent: "center",
                         width: "100%",
-                        height: "100%",
-                        flexDirection: "column",
+                        alignItems: "center",
+                        padding: "0 10px",
                     }}
                 >
+                    {isFavorite ? (
+                        <FavoriteIcon
+                            onClick={(e) => {
+                                deleteGame();
+                                e.stopPropagation();
+                            }}
+                            sx={heartStyle}
+                        />
+                    ) : (
+                        <FavoriteBorderIcon
+                            onClick={(e) => {
+                                addGame(e);
+                            }}
+                            sx={heartStyle}
+                        />
+                    )}
+
                     <Typography
                         variant="h6"
                         sx={{
@@ -144,23 +138,32 @@ const Game: React.FC<Props> = ({ onClick, game }): React.ReactElement => {
                         <PlatformIcons platforms={game.parent_platforms} />
                     </Box>
                 </Box>
-            </Box>
-
-            {game.background_image ? (
-                <img
-                    style={{
-                        height: "200px",
-                    }}
-                    src={cropImage(game.background_image)}
-                    alt="kuva pelistä"
-                />
-            ) : (
-                <ImageIcon
+                <Box
                     sx={{
-                        fontSize: "200px",
+                        display: "flex",
+                        justifyContent: "center",
+                        backgroundColor: "#2d2d2d",
+                        width: "100%",
                     }}
-                />
-            )}
+                >
+                    {game.background_image ? (
+                        <img
+                            style={{
+                                height: "200px",
+                            }}
+                            src={cropImage(game.background_image)}
+                            alt="kuva pelistä"
+                        />
+                    ) : (
+                        <ImageIcon
+                            sx={{
+                                fontSize: "200px",
+                                width: "100%",
+                            }}
+                        />
+                    )}
+                </Box>
+            </Box>
         </Box>
     );
 };
