@@ -29,6 +29,7 @@ interface Gamedetails {
     };
     ready: boolean;
     images: Image[];
+    video: any;
     defaultId?: number;
 }
 interface Image {

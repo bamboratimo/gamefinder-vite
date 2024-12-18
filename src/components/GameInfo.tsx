@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 
 interface Props {
-    gameDetails: any;
+    gameDetails: Gamedetails;
 }
 
 const GameInfo: React.FC<Props> = ({ gameDetails }): React.ReactElement => {

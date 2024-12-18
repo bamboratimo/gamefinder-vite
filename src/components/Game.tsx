@@ -70,7 +70,7 @@ const Game: React.FC<Props> = ({ onClick, game }): React.ReactElement => {
             <Box
                 sx={{
                     textTransform: "none",
-                    width: "300px",
+                    // width: "310px",
                     color: "#fff",
                     display: "flex",
                     flexDirection: "column",
@@ -114,14 +114,11 @@ const Game: React.FC<Props> = ({ onClick, game }): React.ReactElement => {
                     )}
 
                     <Typography
-                        variant="h6"
-                        sx={{
+                        // variant="h6"
+                        style={{
                             textAlign: "center",
-                            marginTop: "auto",
-                            marginBottom: "auto",
                             fontFamily: "Poppins",
-                            fontWeight: "700",
-                            fontSize: "24px",
+                            fontSize: "1.5rem",
                         }}
                     >
                         {game.name}
@@ -149,7 +146,9 @@ const Game: React.FC<Props> = ({ onClick, game }): React.ReactElement => {
                     {game.background_image ? (
                         <img
                             style={{
-                                height: "200px",
+                                //height: "200px",
+                                width: "100%",
+                                height: "auto",
                             }}
                             src={cropImage(game.background_image)}
                             alt="kuva pelistä"

@@ -15,11 +15,13 @@ const GameHeader: React.FC<Props> = ({
 }) => {
     return (
         <Container
+            maxWidth={false}
             sx={{
                 justifyItems: "center",
                 alignItems: "center",
                 display: "grid",
                 gridTemplateColumns: "1fr 3fr 1fr",
+                backgroundColor: "#2b2b2b",
             }}
         >
             <HeartButton

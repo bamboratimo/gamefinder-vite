@@ -115,8 +115,8 @@ const Games: React.FC<Props> = ({
                         <Box
                             sx={{
                                 display: "grid",
-                                gridTemplateColumns: "repeat(auto-fill, 300px)",
-                                gap: "20px",
+                                gridTemplateColumns: "repeat(auto-fill, 360px)",
+                                gap: "30px 20px",
                                 justifyContent: "center",
                                 marginBottom: "20px",
                                 paddingTop: "10px",

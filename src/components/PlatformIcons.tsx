@@ -14,7 +14,7 @@ import web from "../assets/platforms/web.svg";
 import { Box } from "@mui/material";
 
 interface Props {
-    platforms: any;
+    platforms: Game;
 }
 
 const PlatformIcons: React.FC<Props> = ({ platforms }): React.ReactElement => {

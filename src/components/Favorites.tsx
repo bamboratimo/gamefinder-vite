@@ -36,20 +36,21 @@ const Favorites: React.FC<Props> = ({ loading }): React.ReactElement => {
     const favoritesOrfiltered: Favorite[] =
         filterString !== "default" ? filtered : favorites;
 
-    const sortFavorites = (e: React.ChangeEvent<HTMLSelectElement>): void => {
-        if (e.target.value === "-metacritic") {
-            filtered.sort(
+    const sortFavorites = (e: any): void => {
+        console.log(e);
+        if (e === "-metacritic") {
+            [...filtered].sort(
                 (a: Favorite, b: Favorite) =>
                     Number(b.game.metacritic) - Number(a.game.metacritic)
             );
-            favorites.sort(
+            [...favorites].sort(
                 (a: Favorite, b: Favorite) =>
                     Number(b.game.metacritic) - Number(a.game.metacritic)
             );
         }
 
-        if (e.target.value === "name") {
-            filtered.sort((a: Favorite, b: Favorite) => {
+        if (e === "name") {
+            [...filtered].sort((a: Favorite, b: Favorite) => {
                 const nameA = a.game.name.toUpperCase();
                 const nameB = b.game.name.toUpperCase();
                 if (nameA < nameB) {
@@ -60,7 +61,7 @@ const Favorites: React.FC<Props> = ({ loading }): React.ReactElement => {
                 }
                 return 0;
             });
-            favorites.sort((a: Favorite, b: Favorite) => {
+            [...favorites].sort((a: Favorite, b: Favorite) => {
                 const nameA = a.game.name.toUpperCase();
                 const nameB = b.game.name.toUpperCase();
                 if (nameA < nameB) {
@@ -73,18 +74,20 @@ const Favorites: React.FC<Props> = ({ loading }): React.ReactElement => {
             });
         }
 
-        if (e.target.value === "-rating") {
-            filtered.sort(
+        if (e === "-rating") {
+            [...filtered].sort(
                 (a: Favorite, b: Favorite) =>
                     Number(b.game.rating) - Number(a.game.rating)
             );
-            favorites.sort(
-                (a: Favorite, b: Favorite) =>
-                    Number(b.game.rating) - Number(a.game.rating)
+            setFavorites(
+                [...favorites].sort(
+                    (a: Favorite, b: Favorite) =>
+                        Number(b.game.rating) - Number(a.game.rating)
+                )
             );
         }
 
-        if (e.target.value === "released") {
+        if (e === "released") {
             filtered.sort(
                 (a: Favorite, b: Favorite) =>
                     new Date(a.game.released).getTime() -
@@ -97,7 +100,7 @@ const Favorites: React.FC<Props> = ({ loading }): React.ReactElement => {
             );
         }
 
-        if (e.target.value === "default") {
+        if (e === "default") {
             filtered.sort(
                 (a: Favorite, b: Favorite) =>
                     Number(a.defaultId) - Number(b.defaultId)
@@ -108,9 +111,9 @@ const Favorites: React.FC<Props> = ({ loading }): React.ReactElement => {
             );
         }
 
-        setFavoriteSort(e.target.value);
-        setFavorites([...favorites]);
-        setFiltered([...filtered]);
+        setFavoriteSort(e);
+        //setFavorites([...favorites]);
+        //setFiltered([...filtered]);
         console.log(favorites);
     };
 
@@ -129,6 +132,9 @@ const Favorites: React.FC<Props> = ({ loading }): React.ReactElement => {
     };
 
     useEffect(() => {
+        if (!loading) {
+            sortFavorites(favoriteSort);
+        }
         window.scrollTo(0, 0);
     }, []);
 
@@ -155,7 +161,9 @@ const Favorites: React.FC<Props> = ({ loading }): React.ReactElement => {
             >
                 <Box sx={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
                     <SelectElement
-                        onChange={sortFavorites}
+                        onChange={(e: any) => {
+                            sortFavorites(e.target.value);
+                        }}
                         value={favoriteSort}
                         marginLeft="0"
                         id="sort"

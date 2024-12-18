@@ -22,6 +22,7 @@ const GameDetails: React.FC = (): React.ReactElement => {
         game: {},
         ready: false,
         images: [],
+        video: {},
     });
 
     const [loaded, setLoaded] = useState<boolean>(false);
@@ -36,11 +37,6 @@ const GameDetails: React.FC = (): React.ReactElement => {
         setLoaded(true);
     };
 
-    // const cropImage = (word: string): string => {
-    //     const newString = `${word.slice(0, 27)}/crop/600/400${word.slice(27)}`;
-    //     return newString;
-    // };
-
     const getData = async () => {
         try {
             const gameConnection: Response = await fetch(
@@ -54,10 +50,19 @@ const GameDetails: React.FC = (): React.ReactElement => {
                 )}/screenshots?key=${apikey}`
             );
             const imageData = await imageConnection.json();
+
+            const videoConnection: Response = await fetch(
+                `https://api.rawg.io/api/games/${Number(
+                    id
+                )}/movies?key=${apikey}`
+            );
+            const videoData = await videoConnection.json();
+
             setGameDetails({
                 ...gameDetails,
                 game: gameData,
                 images: imageData.results,
+                video: videoData.results[0],
                 ready: true,
             });
         } catch (e: unknown) {
@@ -82,6 +87,8 @@ const GameDetails: React.FC = (): React.ReactElement => {
             sx={{
                 backgroundColor: "black",
                 paddingTop: Mobile ? "125px" : "80px",
+                paddingRight: "10px",
+                paddingLeft: "10px",
             }}
         >
             {gameDetails.ready ? (
@@ -110,76 +117,40 @@ const GameDetails: React.FC = (): React.ReactElement => {
                 sx={{
                     display: "grid",
                     gridTemplateColumns: Mobile ? "1fr" : "1fr 1fr",
-                    padding: "0 10px",
                     alignItems: "start",
-                    gap: "20px",
+                    justifyContent: "space-between",
+                    gap: "10px",
                     height: Mobile ? "90vh" : "initial",
                 }}
             >
-                <Box
-                    sx={{
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        flex: 1,
-                        justifyContent: "center",
-                    }}
-                >
+                <Box>
                     {!gameDetails.ready ? (
-                        <Box
+                        <Skeleton
                             sx={{
-                                display: "flex",
-                                justifyContent: "center",
                                 width: "100%",
+                                height: "35vh",
+                                bgcolor: "grey.900",
                             }}
-                        >
-                            <Skeleton
-                                sx={{
-                                    width: "100%",
-                                    height: "35vh",
-                                    bgcolor: "grey.900",
-                                }}
-                                variant="rectangular"
-                            />
-                        </Box>
+                            variant="rectangular"
+                        />
                     ) : !gameDetails.game.background_image ? (
                         <ImageIcon sx={{ fontSize: "200px", color: "white" }} />
                     ) : (
-                        <Box
-                            sx={{
-                                display: "flex",
-                                justifyContent: "center",
+                        <img
+                            style={{
+                                marginBottom: "10px",
+                                width: "100%",
+                                maxWidth: "900px",
+                                height: loaded ? "auto" : "40vh",
                             }}
-                        >
-                            <img
-                                style={{
-                                    marginBottom: "10px",
-                                    width: "100%",
-                                    maxWidth: "800px",
-                                    height: loaded ? "auto" : "40vh",
-                                }}
-                                // src={cropImage(
-                                //     gameDetails.game.background_image
-                                // )}
-                                src={gameDetails.game.background_image}
-                                alt="kuva pelistä"
-                                onLoad={onLoad}
-                            />
-                        </Box>
+                            src={gameDetails.game.background_image}
+                            alt="kuva pelistä"
+                            onLoad={onLoad}
+                        />
                     )}
 
                     {gameDetails.ready ? (
-                        <Box
-                            sx={{
-                                display: "flex",
-                                flexDirection: "column",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                gap: "12px",
-                                width: "100%",
-                                paddingBottom: "20px",
-                            }}
-                        >
+                        <Box>
                             <AccordionElement gameDetails={gameDetails} />
                             <GameInfo gameDetails={gameDetails} />
                         </Box>
@@ -214,8 +185,6 @@ const GameDetails: React.FC = (): React.ReactElement => {
                             gridTemplateColumns: "1fr 1fr",
                             gridAutoRows: "min-content",
                             gap: "10px",
-                            background: "black",
-                            justifySelf: "center",
                         }}
                     >
                         {Array(4)
@@ -235,7 +204,19 @@ const GameDetails: React.FC = (): React.ReactElement => {
                             })}
                     </Box>
                 ) : (
-                    <GameImages gameDetails={gameDetails} />
+                    <Box>
+                        {gameDetails.video ? (
+                            <video
+                                controls
+                                poster={gameDetails.video.preview}
+                                style={{ maxWidth: "100%" }}
+                            >
+                                <source src={gameDetails.video.data[480]} />
+                            </video>
+                        ) : null}
+
+                        <GameImages gameDetails={gameDetails} />
+                    </Box>
                 )}
             </Container>
         </Container>

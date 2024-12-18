@@ -1,7 +1,7 @@
 import { Box, useMediaQuery } from "@mui/material";
 
 interface Props {
-    gameDetails: any;
+    gameDetails: Gamedetails;
 }
 
 const GameImages: React.FC<Props> = ({ gameDetails }): React.ReactElement => {
@@ -15,7 +15,6 @@ const GameImages: React.FC<Props> = ({ gameDetails }): React.ReactElement => {
                 gridAutoRows: "min-content",
                 gap: "10px",
                 background: "black",
-                justifySelf: "center",
             }}
         >
             {gameDetails.images.map((kuva: Image, index: number) => {

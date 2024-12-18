@@ -4,6 +4,7 @@ import ClearInput from "./ClearInput";
 
 interface Props {
     searchWord: string;
+    setSearchWord: (arg0: string) => void;
     search: () => void;
     onChange: (arg0: any) => void;
     textRef: any;
@@ -11,6 +12,7 @@ interface Props {
 
 const SearchBar: React.FC<Props> = ({
     searchWord,
+    setSearchWord,
     search,
     onChange,
     textRef,
@@ -20,6 +22,7 @@ const SearchBar: React.FC<Props> = ({
     return (
         <>
             <TextField
+                value={searchWord}
                 inputRef={textRef}
                 variant="outlined"
                 size="small"
@@ -47,7 +50,7 @@ const SearchBar: React.FC<Props> = ({
                     position: "relative",
                 }}
             ></TextField>
-            <ClearInput textRef={textRef} />
+            <ClearInput textRef={textRef} setSearchWord={setSearchWord} />
         </>
     );
 };

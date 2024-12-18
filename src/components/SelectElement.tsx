@@ -7,7 +7,7 @@ interface Props {
     id: string;
     label: string;
     text: string;
-    children: any;
+    children: React.ReactElement[];
 }
 
 const SelectElement: React.FC<Props> = ({

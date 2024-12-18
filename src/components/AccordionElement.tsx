@@ -7,7 +7,7 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 interface Props {
-    gameDetails: any;
+    gameDetails: Gamedetails;
 }
 
 const AccordionElement: React.FC<Props> = ({

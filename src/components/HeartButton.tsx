@@ -6,7 +6,7 @@ import GameContext from "../GameContext";
 
 interface Props {
     alreadyFavorite: Favorite | undefined;
-    gameDetails: any;
+    gameDetails: Gamedetails | any;
 }
 
 const favoriteIconStyle = {
@@ -54,7 +54,6 @@ const HeartButton: React.FC<Props> = ({
         <Box
             sx={{
                 display: "flex",
-                justifyContent: "center",
                 alignItems: "center",
             }}
         >

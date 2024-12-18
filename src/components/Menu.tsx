@@ -23,7 +23,7 @@ const Menu: React.FC<Props> = ({
 }): React.ReactElement => {
     const navigate = useNavigate();
 
-    const textRef = useRef<string>("");
+    const textRef = useRef<any>("");
 
     const inputHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setSearchWord(e.target.value);
@@ -74,6 +74,7 @@ const Menu: React.FC<Props> = ({
             >
                 <SearchBar
                     searchWord={searchWord}
+                    setSearchWord={setSearchWord}
                     search={search}
                     onChange={(e) => {
                         inputHandler(e);
