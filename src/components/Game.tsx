@@ -146,9 +146,9 @@ const Game: React.FC<Props> = ({ onClick, game }): React.ReactElement => {
                     {game.background_image ? (
                         <img
                             style={{
-                                //height: "200px",
-                                width: "100%",
-                                height: "auto",
+                                //height: "300px",
+                                width: "auto",
+                                height: "240px",
                             }}
                             src={cropImage(game.background_image)}
                             alt="kuva pelistä"

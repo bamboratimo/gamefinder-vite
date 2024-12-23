@@ -14,6 +14,7 @@ const GameInfo: React.FC<Props> = ({ gameDetails }): React.ReactElement => {
                 width: "100%",
                 gap: "20px",
                 justifyContent: "center",
+                backgroundColor: "black",
             }}
         >
             <Box

@@ -28,11 +28,13 @@ const SearchBar: React.FC<Props> = ({
                 size="small"
                 placeholder="Etsi pelejä..."
                 onChange={onChange}
-                onKeyDown={(e: React.KeyboardEvent) => {
+                onKeyDown={(e: any) => {
                     if (e.key === "Enter") {
+                        e.target.blur();
                         if (searchWord === textRef.current) {
                             return;
                         }
+
                         search();
                         navigate("/");
                         textRef.current = searchWord;

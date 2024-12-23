@@ -145,7 +145,7 @@ const Games: React.FC<Props> = ({
                                                       borderRadius: "20px",
                                                   }}
                                                   variant="rectangular"
-                                                  width={300}
+                                                  width={360}
                                                   height={300}
                                               />
                                           );
