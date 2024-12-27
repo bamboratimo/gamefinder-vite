@@ -3,18 +3,19 @@ import ClearIcon from "@mui/icons-material/Clear";
 interface Props {
     textRef: any;
     setSearchWord: (arg0: string) => void;
+    searchWord: any;
 }
 
 const ClearInput: React.FC<Props> = ({
     textRef,
     setSearchWord,
+    searchWord,
 }): React.ReactElement => {
     return (
         <ClearIcon
             onClick={() => {
                 console.log(textRef.current.value);
-                //textRef.current.value = "";
-                setSearchWord("");
+                setSearchWord({ ...searchWord, current: "" });
                 textRef.current.focus();
             }}
             sx={{

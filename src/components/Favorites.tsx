@@ -240,7 +240,7 @@ const Favorites: React.FC<Props> = ({ loading }): React.ReactElement => {
                     sx={{
                         width: "100%",
                         display: "grid",
-                        gridTemplateColumns: "repeat(auto-fill, 300px)",
+                        gridTemplateColumns: "repeat(auto-fill, 360px)",
                         gap: "20px",
                         justifyContent: "center",
                     }}

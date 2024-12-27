@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ClearInput from "./ClearInput";
 
 interface Props {
-    searchWord: string;
+    searchWord: any;
     setSearchWord: (arg0: string) => void;
     search: () => void;
     onChange: (arg0: any) => void;
@@ -22,7 +22,7 @@ const SearchBar: React.FC<Props> = ({
     return (
         <>
             <TextField
-                value={searchWord}
+                value={searchWord.current}
                 inputRef={textRef}
                 variant="outlined"
                 size="small"
@@ -31,13 +31,16 @@ const SearchBar: React.FC<Props> = ({
                 onKeyDown={(e: any) => {
                     if (e.key === "Enter") {
                         e.target.blur();
-                        if (searchWord === textRef.current) {
+                        if (textRef.current.value === searchWord.previous) {
                             return;
                         }
 
                         search();
                         navigate("/");
-                        textRef.current = searchWord;
+                        setSearchWord({
+                            ...searchWord,
+                            previous: textRef.current.value,
+                        });
                     }
                 }}
                 autoComplete="off"
@@ -51,8 +54,12 @@ const SearchBar: React.FC<Props> = ({
                     marginRight: "10px",
                     position: "relative",
                 }}
-            ></TextField>
-            <ClearInput textRef={textRef} setSearchWord={setSearchWord} />
+            />
+            <ClearInput
+                textRef={textRef}
+                setSearchWord={setSearchWord}
+                searchWord={searchWord}
+            />
         </>
     );
 };

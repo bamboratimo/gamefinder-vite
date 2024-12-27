@@ -8,7 +8,7 @@ import { useRef } from "react";
 
 interface Props {
     favorites: Favorite[];
-    searchWord: string;
+    searchWord: any;
     setSearchWord: (arg0: string) => void;
     search: () => void;
     searchSort: string;
@@ -26,7 +26,7 @@ const Menu: React.FC<Props> = ({
     const textRef = useRef<any>("");
 
     const inputHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
-        setSearchWord(e.target.value);
+        setSearchWord({ ...searchWord, current: e.target.value });
     };
     return (
         <Box
@@ -83,13 +83,18 @@ const Menu: React.FC<Props> = ({
                 />
                 <Button
                     variant="contained"
-                    onClick={() => {
-                        if (searchWord === textRef.current) {
+                    onClick={(e: any) => {
+                        e.target.blur();
+                        if (textRef.current.value === searchWord.previous) {
                             return;
                         }
+
                         search();
                         navigate("/");
-                        textRef.current = searchWord;
+                        setSearchWord({
+                            ...searchWord,
+                            previous: textRef.current.value,
+                        });
                     }}
                     sx={{
                         height: "2.5rem",

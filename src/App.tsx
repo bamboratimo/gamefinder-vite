@@ -26,7 +26,10 @@ const App: React.FC = (): React.ReactElement => {
     const [favoriteSort, setFavoriteSort] = useState<string>("default");
     const [filterString, setFilterString] = useState<string>("default");
     const [searchSort, setSearchSort] = useState<string>("default");
-    const [searchWord, setSearchWord] = useState<string>("");
+    const [searchWord, setSearchWord] = useState<any>({
+        current: "",
+        previous: "",
+    });
     const apikey: string = "1e7def9ddd864094acb19cb25ff3eb45";
 
     const sharedValue = {
@@ -59,7 +62,7 @@ const App: React.FC = (): React.ReactElement => {
                 skeletons: true,
             });
             const connection: Response = await fetch(
-                `https://api.rawg.io/api/games?key=${apikey}&search=${searchWord}&ordering=${searchSort}`
+                `https://api.rawg.io/api/games?key=${apikey}&search=${searchWord.current}&ordering=${searchSort}`
             );
 
             const data = await connection.json();
