@@ -48,7 +48,7 @@ const Menu: React.FC<Props> = ({
                 <Typography
                     variant="h4"
                     sx={{
-                        color: "ghostwhite",
+                        color: "blue",
                         fontFamily: "monospace",
                     }}
                 >
