@@ -39,45 +39,55 @@ const Favorites: React.FC<Props> = ({ loading }): React.ReactElement => {
     const sortFavorites = (e: any): void => {
         console.log(e);
         if (e === "-metacritic") {
-            [...filtered].sort(
-                (a: Favorite, b: Favorite) =>
-                    Number(b.game.metacritic) - Number(a.game.metacritic)
+            setFiltered(
+                [...filtered].sort(
+                    (a: Favorite, b: Favorite) =>
+                        Number(b.game.metacritic) - Number(a.game.metacritic)
+                )
             );
-            [...favorites].sort(
-                (a: Favorite, b: Favorite) =>
-                    Number(b.game.metacritic) - Number(a.game.metacritic)
+            setFavorites(
+                [...favorites].sort(
+                    (a: Favorite, b: Favorite) =>
+                        Number(b.game.metacritic) - Number(a.game.metacritic)
+                )
             );
         }
 
         if (e === "name") {
-            [...filtered].sort((a: Favorite, b: Favorite) => {
-                const nameA = a.game.name.toUpperCase();
-                const nameB = b.game.name.toUpperCase();
-                if (nameA < nameB) {
-                    return -1;
-                }
-                if (nameA > nameB) {
-                    return 1;
-                }
-                return 0;
-            });
-            [...favorites].sort((a: Favorite, b: Favorite) => {
-                const nameA = a.game.name.toUpperCase();
-                const nameB = b.game.name.toUpperCase();
-                if (nameA < nameB) {
-                    return -1;
-                }
-                if (nameA > nameB) {
-                    return 1;
-                }
-                return 0;
-            });
+            setFiltered(
+                [...filtered].sort((a: Favorite, b: Favorite) => {
+                    const nameA = a.game.name.toUpperCase();
+                    const nameB = b.game.name.toUpperCase();
+                    if (nameA < nameB) {
+                        return -1;
+                    }
+                    if (nameA > nameB) {
+                        return 1;
+                    }
+                    return 0;
+                })
+            );
+            setFavorites(
+                [...favorites].sort((a: Favorite, b: Favorite) => {
+                    const nameA = a.game.name.toUpperCase();
+                    const nameB = b.game.name.toUpperCase();
+                    if (nameA < nameB) {
+                        return -1;
+                    }
+                    if (nameA > nameB) {
+                        return 1;
+                    }
+                    return 0;
+                })
+            );
         }
 
         if (e === "-rating") {
-            [...filtered].sort(
-                (a: Favorite, b: Favorite) =>
-                    Number(b.game.rating) - Number(a.game.rating)
+            setFiltered(
+                [...filtered].sort(
+                    (a: Favorite, b: Favorite) =>
+                        Number(b.game.rating) - Number(a.game.rating)
+                )
             );
             setFavorites(
                 [...favorites].sort(
@@ -88,26 +98,34 @@ const Favorites: React.FC<Props> = ({ loading }): React.ReactElement => {
         }
 
         if (e === "released") {
-            filtered.sort(
-                (a: Favorite, b: Favorite) =>
-                    new Date(a.game.released).getTime() -
-                    new Date(b.game.released).getTime()
+            setFiltered(
+                filtered.sort(
+                    (a: Favorite, b: Favorite) =>
+                        new Date(a.game.released).getTime() -
+                        new Date(b.game.released).getTime()
+                )
             );
-            favorites.sort(
-                (a: Favorite, b: Favorite) =>
-                    new Date(a.game.released).getTime() -
-                    new Date(b.game.released).getTime()
+            setFavorites(
+                favorites.sort(
+                    (a: Favorite, b: Favorite) =>
+                        new Date(a.game.released).getTime() -
+                        new Date(b.game.released).getTime()
+                )
             );
         }
 
         if (e === "default") {
-            filtered.sort(
-                (a: Favorite, b: Favorite) =>
-                    Number(a.defaultId) - Number(b.defaultId)
+            setFiltered(
+                filtered.sort(
+                    (a: Favorite, b: Favorite) =>
+                        Number(a.defaultId) - Number(b.defaultId)
+                )
             );
-            favorites.sort(
-                (a: Favorite, b: Favorite) =>
-                    Number(a.defaultId) - Number(b.defaultId)
+            setFavorites(
+                favorites.sort(
+                    (a: Favorite, b: Favorite) =>
+                        Number(a.defaultId) - Number(b.defaultId)
+                )
             );
         }
 

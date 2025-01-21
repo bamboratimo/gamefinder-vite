@@ -19,6 +19,7 @@ const AccordionElement: React.FC<Props> = ({
                 backgroundColor: "#151515",
                 color: "white",
                 width: "100%",
+                maxWidth: "900px",
             }}
         >
             <AccordionSummary

@@ -22,7 +22,7 @@ const GameImages: React.FC<Props> = ({ gameDetails }): React.ReactElement => {
                     <Box
                         key={index}
                         sx={{
-                            maxWidth: "500px",
+                            width: "100%",
                             height: "100%",
                         }}
                     >

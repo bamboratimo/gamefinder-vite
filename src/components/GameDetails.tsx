@@ -140,7 +140,7 @@ const GameDetails: React.FC = (): React.ReactElement => {
                             style={{
                                 marginBottom: "10px",
                                 width: "100%",
-                                maxWidth: "900px",
+                                //maxWidth: "900px",
                                 height: loaded ? "auto" : "40vh",
                             }}
                             src={gameDetails.game.background_image}
@@ -209,7 +209,7 @@ const GameDetails: React.FC = (): React.ReactElement => {
                             <video
                                 controls
                                 poster={gameDetails.video.preview}
-                                style={{ maxWidth: "100%" }}
+                                style={{ width: "100%" }}
                             >
                                 <source src={gameDetails.video.data[480]} />
                             </video>
