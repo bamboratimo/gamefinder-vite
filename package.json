@@ -1,7 +1,7 @@
 {
     "name": "vite-project",
     "private": true,
-    "homepage": "https://bamboratimo.github.io/gamefinder-vite/",
+    "homepage": "https://timorautiainen.github.io/gamefinder-vite/",
     "version": "0.0.0",
     "type": "module",
     "scripts": {
